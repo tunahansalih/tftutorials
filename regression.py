@@ -8,6 +8,7 @@ boston_housing = keras.datasets.boston_housing
 
 (train_data, train_label), (test_data, test_label) = boston_housing.load_data()
 
+# Shuffle data
 np.random.shuffle(train_data)
 np.random.shuffle(train_label)
 
@@ -22,6 +23,8 @@ std = train_data.std(axis=0)
 train_data = (train_data - mean) / std
 test_data = (test_data - mean) / std
 
+
+# Create model with three dense layers
 def build_model():
     model = keras.Sequential()
     model.add(keras.layers.Dense(64,
@@ -32,7 +35,7 @@ def build_model():
     model.add(keras.layers.Dense(1))
 
     model.compile(optimizer=tf.train.RMSPropOptimizer(0.001),
-                  loss='mse',
+                  loss=keras.losses.mse,
                   metrics=[keras.metrics.mae])
 
     return model

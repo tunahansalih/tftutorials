@@ -48,9 +48,10 @@ model.compile(optimizer=tf.train.AdamOptimizer(),
 # Train labels
 model.fit(train_images, train_labels, epochs=5)
 
-
+# Evaluate test loss and accuracy
 test_loss, test_accuracy = model.evaluate(test_images, test_labels)
 
+# Get predicted classes show ten
 predictions = np.argmax(model.predict(test_images), axis=1)
 print(predictions)
 plt.figure(figsize=(10,10))
