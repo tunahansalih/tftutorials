@@ -50,7 +50,6 @@ class PrintDot(keras.callbacks.Callback):
         if epoch % 100 == 0:
             print('', end='\n')
         print(str(epoch), end=' ')
-
 #
 # history = model.fit(train_data,
 #                     train_label,

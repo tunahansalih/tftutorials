@@ -58,3 +58,23 @@ smaller_history = smaller_model.fit(train_seq,
                                     validation_split=0.2,
                                     verbose=2)
 
+bigger_model = keras.models.Sequential([
+    tf.layers.Dense(4, activation=tf.nn.relu, input_shape=(NUM_WORDS,)),
+    tf.layers.Dense(4, activation=tf.nn.relu),
+    tf.layers.Dense(1, activation=tf.nn.sigmoid)])
+
+bigger_model.compile(optimizer=keras.optimizers.Adam(),
+                     loss=keras.losses.binary_crossentropy,
+                     metrics=[keras.metrics.binary_crossentropy, keras.metrics.binary_accuracy])
+
+bigger_model.summary()
+
+bigger_history = bigger_model.fit(train_seq,
+                                  train_label,
+                                  batch_size=512,
+                                  epochs=20,
+                                  validation_split=0.2,
+                                  verbose=2)
+
+plt.figure(figsize=(16,10))
+
